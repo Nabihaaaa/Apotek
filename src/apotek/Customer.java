@@ -23,7 +23,7 @@ import java.sql.SQLException;
  *
  * @author yodha
  */
-public class Customer extends javax.swing.JFrame {
+public class Customer extends javax.swing.JFrame implements SQL{
     
     public static Connection con;
     public static Statement stm;
@@ -94,8 +94,7 @@ public class Customer extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Stok Barang");
 
-        jButton5.setBackground(java.awt.Color.red);
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setBackground(new java.awt.Color(255, 51, 51));
         jButton5.setText("EXIT");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -182,11 +181,6 @@ public class Customer extends javax.swing.JFrame {
         jButton_deleteAll.setBackground(new java.awt.Color(255, 0, 0));
         jButton_deleteAll.setForeground(new java.awt.Color(255, 255, 255));
         jButton_deleteAll.setText("Delete All");
-        jButton_deleteAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_deleteAllActionPerformed(evt);
-            }
-        });
 
         jTable_customers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -308,7 +302,9 @@ public class Customer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,7 +314,8 @@ public class Customer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
-    private void connectsql() {
+    @Override
+    public void connectsql() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/database_apotek","root","");
@@ -328,7 +325,8 @@ public class Customer extends javax.swing.JFrame {
         }
     }
     
-    private void  tableDisplay(){
+    @Override
+    public void  tableDisplay(){
         try {
             //kolom
             DefaultTableModel tb = new DefaultTableModel();
@@ -365,8 +363,7 @@ public class Customer extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             String ID = ID_text.getText();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM customer WHERE ID=(?)");
-            ps.setString(1, ID);
+            PreparedStatement ps = con.prepareStatement("DELETE FROM customer WHERE ID="+ID);
             ps.executeUpdate();
             tableDisplay();
             JOptionPane.showMessageDialog(this, "Data Deleted");
@@ -382,16 +379,23 @@ public class Customer extends javax.swing.JFrame {
             if(text_nama.getText().equals("")|| text_harga.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Please Insert All Data");
             }else{
-
+                
+                Apotek apt = new Apotek();
                 //get data
                 String nama = text_nama.getText();
+                int ID_obat = jComboBox_Obat.getSelectedIndex()+1;
                 String obat = jComboBox_Obat.getSelectedItem().toString();
                 int jumlah = Integer.parseInt(text_harga.getText());
-                
+                int harga = apt.getHarga(Integer.toString(ID_obat));
+                int totalHarga = harga * jumlah;
                 //date to String
                 Date date = Calendar.getInstance().getTime();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                String strDate = dateFormat.format(date);                                             
+                String strDate = dateFormat.format(date);
+                //mengurangi stock
+                int stock = apt.getstock(Integer.toString(ID_obat));
+                int total = stock - jumlah;
+                apt.setStock(Integer.toString(ID_obat), Integer.toString(total));
                 //insert data to sql
                 
                 PreparedStatement ps = con.prepareStatement("insert into customer(ID,Nama,Obat,Jumlah,Tanggal,Total_Harga)values(?,?,?,?,?,?)");
@@ -400,9 +404,9 @@ public class Customer extends javax.swing.JFrame {
                 ps.setString(3, obat);          
                 ps.setInt(4, jumlah);
                 ps.setString(5, strDate);
-                ps.setInt(6, 0);
+                ps.setInt(6, totalHarga);
                 ps.executeUpdate();
-              
+                
                 tableDisplay();
                 JOptionPane.showMessageDialog(this, "Data Added");
                 
@@ -419,18 +423,6 @@ public class Customer extends javax.swing.JFrame {
     private void ID_textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_textActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ID_textActionPerformed
-
-    private void jButton_deleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteAllActionPerformed
-        try {
-            // TODO add your handling code here:
-            PreparedStatement ps = con.prepareStatement("DELETE FROM customer");
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Data Deleted");
-            tableDisplay();
-        } catch (SQLException ex) {
-            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton_deleteAllActionPerformed
 
     /**
      * @param args the command line arguments
@@ -470,10 +462,15 @@ public class Customer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ID_text;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JButton jButton_delete;
     private javax.swing.JButton jButton_deleteAll;
     private javax.swing.JButton jButton_tambah;
@@ -483,9 +480,13 @@ public class Customer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_customers;
     private javax.swing.JTextField text_harga;

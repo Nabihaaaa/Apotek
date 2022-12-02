@@ -184,6 +184,11 @@ public class Pegawai extends javax.swing.JFrame implements SQL{
         jButton_deleteAll.setBackground(new java.awt.Color(255, 0, 0));
         jButton_deleteAll.setForeground(new java.awt.Color(255, 255, 255));
         jButton_deleteAll.setText("Delete All");
+        jButton_deleteAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_deleteAllActionPerformed(evt);
+            }
+        });
 
         jTable_Pegawai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -420,7 +425,8 @@ public class Pegawai extends javax.swing.JFrame implements SQL{
         try {
             // TODO add your handling code here:
             String ID = ID_text_2.getText();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Pegawai WHERE ID="+ID);
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Karyawan WHERE ID=(?)");
+            ps.setString(1, ID);
             ps.executeUpdate();
             tableDisplay();
             JOptionPane.showMessageDialog(this, "Data Deleted");
@@ -441,6 +447,17 @@ public class Pegawai extends javax.swing.JFrame implements SQL{
     private void text_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_namaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_text_namaActionPerformed
+
+    private void jButton_deleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteAllActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Karyawan");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_deleteAllActionPerformed
 
     /**
      * @param args the command line arguments

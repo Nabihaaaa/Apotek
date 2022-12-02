@@ -162,6 +162,11 @@ public final class Customer extends javax.swing.JFrame implements SQL{
         jButton_deleteAll.setBackground(new java.awt.Color(255, 0, 0));
         jButton_deleteAll.setForeground(new java.awt.Color(255, 255, 255));
         jButton_deleteAll.setText("Delete All");
+        jButton_deleteAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_deleteAllActionPerformed(evt);
+            }
+        });
 
         jTable_customers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -428,6 +433,18 @@ public final class Customer extends javax.swing.JFrame implements SQL{
         m.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton_BACKActionPerformed
+
+    private void jButton_deleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteAllActionPerformed
+        try {
+            // TODO add your handling code here:
+            PreparedStatement ps = con.prepareStatement("DELETE FROM customer");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jButton_deleteAllActionPerformed
 
     /**
      * @param args the command line arguments

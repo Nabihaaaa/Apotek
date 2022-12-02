@@ -454,6 +454,7 @@ public class Pegawai extends javax.swing.JFrame implements SQL{
             // TODO add your handling code here:
             PreparedStatement ps = con.prepareStatement("DELETE FROM Karyawan");
             ps.executeUpdate();
+            tableDisplay();
         } catch (SQLException ex) {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
         }

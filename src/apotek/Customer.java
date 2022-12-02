@@ -386,16 +386,16 @@ public final class Customer extends javax.swing.JFrame implements SQL{
                 int ID_obat = jComboBox_Obat.getSelectedIndex()+1;
                 String obat = jComboBox_Obat.getSelectedItem().toString();
                 int jumlah = Integer.parseInt(text_harga.getText());
-                int harga = apt.getHarga(Integer.toString(ID_obat));
+                int harga = apt.getHarga(ID_obat);
                 int totalHarga = harga * jumlah;
                 //date to String
                 Date date = Calendar.getInstance().getTime();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String strDate = dateFormat.format(date);
                 //mengurangi stock
-                int stock = apt.getstock(Integer.toString(ID_obat));
+                int stock = apt.getstock(ID_obat);
                 int total = stock - jumlah;
-                apt.setStock(Integer.toString(ID_obat), Integer.toString(total));
+                apt.setStock(ID_obat, total);
                 //insert data to sql
                 
                 PreparedStatement ps = con.prepareStatement("insert into customer(ID,Nama,Obat,Jumlah,Tanggal,Total_Harga)values(?,?,?,?,?,?)");
@@ -439,6 +439,7 @@ public final class Customer extends javax.swing.JFrame implements SQL{
             // TODO add your handling code here:
             PreparedStatement ps = con.prepareStatement("DELETE FROM customer");
             ps.executeUpdate();
+            tableDisplay();
         } catch (SQLException ex) {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
         }

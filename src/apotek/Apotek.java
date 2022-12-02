@@ -53,11 +53,36 @@ public class Apotek implements SQL{
         }
         return 0;
     }
-  
     
-    public void setStock(String ID,String Total){
+    public int getstock(int ID){
+        try {
+            String id = Integer.toString(ID);
+            res = stm.executeQuery("SELECT * from stockobat where ID="+id);
+            int s = 0;
+            while (res.next()){
+                s = res.getInt("Stock");
+            }
+            return s;
+        } catch (SQLException ex) {
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    public void setStock(String ID, String Total){
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE StockObat set stock="+Total+" WHERE ID="+ID);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setStock(int ID, int Total){
+        String id = Integer.toString(ID);
+        String total = Integer.toString(Total);
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE StockObat set stock="+total+" WHERE ID="+id);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,9 +104,36 @@ public class Apotek implements SQL{
         
     }
     
+    public int getHarga(int ID){
+        try {
+            String id = Integer.toString(ID);
+            res = stm.executeQuery("SELECT * from stockobat where ID="+id);
+            int s = 0;
+            while (res.next()){
+                s = res.getInt("Harga");
+            }
+            return s;
+        } catch (SQLException ex) {
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+        
+    }
+    
     public void setHarga(String ID, String Harga){
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE StockObat set Harga="+Harga+" WHERE ID="+ID);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setHarga(int ID, int Harga){
+        String id = Integer.toString(ID);
+        String harga = Integer.toString(Harga);
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE StockObat set Harga="+harga+" WHERE ID="+id);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);

@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author yodha
  */
-public class Bendahara extends javax.swing.JFrame implements SQL{
+public final class Bendahara extends javax.swing.JFrame implements SQL{
     private Apotek apt;
     private DefaultTableModel tb;
 

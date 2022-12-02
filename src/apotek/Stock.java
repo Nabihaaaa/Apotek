@@ -294,8 +294,8 @@ public final class Stock extends javax.swing.JFrame implements SQL{
             int stock = apt.getstock(ID);
             int total = stock + Integer.parseInt(jumlah);
             apt.setStock(ID, Integer.toString(total));
+            
             tableDisplay();
- 
             JOptionPane.showMessageDialog(this, "Data Added");
         }
     }//GEN-LAST:event_jButton_tambahActionPerformed

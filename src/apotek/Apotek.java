@@ -26,7 +26,6 @@ public class Apotek implements SQL{
 
     public Apotek() {
         connectsql();
-        
     }
     
     @Override
@@ -93,7 +92,5 @@ public class Apotek implements SQL{
     public void tableDisplay() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
-    
+        
 }

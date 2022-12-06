@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.sql.DriverManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
  * @author yodha
@@ -39,8 +38,7 @@ public final class Apotek implements SQL{
     }
     
     public int getstock(String ID){
-        try {
-    
+        try {    
             res = stm.executeQuery("SELECT * from stockobat where ID="+ID);
             int s = 0;
             while (res.next()){

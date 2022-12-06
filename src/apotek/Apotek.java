@@ -34,7 +34,7 @@ public final class Apotek implements SQL{
             con = DriverManager.getConnection("jdbc:mysql://localhost/database_apotek","root","");
             stm = con.createStatement();
         } catch (Exception ex) {
-            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

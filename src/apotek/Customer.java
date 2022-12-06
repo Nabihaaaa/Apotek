@@ -7,7 +7,6 @@ package apotek;
 import static apotek.Apotek.con;
 import static apotek.Apotek.res;
 import static apotek.Apotek.stm;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -15,13 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JTabbedPane;
 
 /**
  *
@@ -46,7 +40,12 @@ public final class Customer extends javax.swing.JFrame implements SQL{
     
     @Override
     public void connectsql(){
-        apt = new Apotek();
+        try{
+            apt = new Apotek();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "SQL NOT CONNECTED");
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -380,8 +379,7 @@ public final class Customer extends javax.swing.JFrame implements SQL{
            
             if(text_nama.getText().equals("")|| text_harga.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Please Insert All Data");
-            }else{
-                
+            }else{               
                 //get data
                 String nama = text_nama.getText();
                 int ID_obat = jComboBox_Obat.getSelectedIndex()+1;

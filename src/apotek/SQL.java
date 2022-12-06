@@ -9,7 +9,6 @@ package apotek;
  * @author yodha
  */
 public interface SQL {
-    
     void connectsql();
     
     void tableDisplay();

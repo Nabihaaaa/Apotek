@@ -6,10 +6,7 @@ package apotek;
 
 import static apotek.Apotek.res;
 import static apotek.Apotek.stm;
-import static apotek.Apotek.con;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 

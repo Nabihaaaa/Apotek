@@ -18,7 +18,7 @@ import java.sql.PreparedStatement;
  *
  * @author yodha
  */
-public class Pegawai extends javax.swing.JFrame implements SQL{
+public final class Pegawai extends javax.swing.JFrame implements SQL{
     private Apotek apt;
 
     /**

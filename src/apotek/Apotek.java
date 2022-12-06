@@ -6,7 +6,6 @@ package apotek;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author yodha
  */
-public class Apotek implements SQL{
+public final class Apotek implements SQL{
     
     public static Connection con;
     public static Statement stm;

@@ -31,10 +31,10 @@ public class Main extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Customer_Button = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        Pegawai_Button = new javax.swing.JButton();
+        Bendahara_Button = new javax.swing.JButton();
+        Stock_Button = new javax.swing.JButton();
+        Exit_Button = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -56,38 +56,38 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Pegawai");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Pegawai_Button.setBackground(new java.awt.Color(255, 255, 255));
+        Pegawai_Button.setForeground(new java.awt.Color(0, 0, 0));
+        Pegawai_Button.setText("Pegawai");
+        Pegawai_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Pegawai_ButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("Bendahara");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Bendahara_Button.setBackground(new java.awt.Color(255, 255, 255));
+        Bendahara_Button.setForeground(new java.awt.Color(0, 0, 0));
+        Bendahara_Button.setText("Bendahara");
+        Bendahara_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                Bendahara_ButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Stok Barang");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Stock_Button.setBackground(new java.awt.Color(255, 255, 255));
+        Stock_Button.setForeground(new java.awt.Color(0, 0, 0));
+        Stock_Button.setText("Stok Barang");
+        Stock_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                Stock_ButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(255, 51, 51));
-        jButton5.setText("EXIT");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        Exit_Button.setBackground(new java.awt.Color(255, 51, 51));
+        Exit_Button.setText("EXIT");
+        Exit_Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                Exit_ButtonActionPerformed(evt);
             }
         });
 
@@ -104,13 +104,13 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                            .addComponent(Stock_Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
                             .addComponent(Customer_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Pegawai_Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Bendahara_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(Exit_Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -121,13 +121,13 @@ public class Main extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(Customer_Button)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(Pegawai_Button)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(Bendahara_Button)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(Stock_Button)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
-                .addComponent(jButton5)
+                .addComponent(Exit_Button)
                 .addGap(31, 31, 31))
         );
 
@@ -212,31 +212,31 @@ public class Main extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_Customer_ButtonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void Exit_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Exit_ButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_Exit_ButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void Stock_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Stock_ButtonActionPerformed
         // TODO add your handling code here:
         Stock s = new Stock();
         s.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_Stock_ButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void Pegawai_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Pegawai_ButtonActionPerformed
         // TODO add your handling code here:
         Pegawai p = new Pegawai();
         p.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Pegawai_ButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void Bendahara_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bendahara_ButtonActionPerformed
         // TODO add your handling code here:
         Bendahara b = new Bendahara();
         b.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_Bendahara_ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,11 +274,11 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bendahara_Button;
     private javax.swing.JButton Customer_Button;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton Exit_Button;
+    private javax.swing.JButton Pegawai_Button;
+    private javax.swing.JButton Stock_Button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

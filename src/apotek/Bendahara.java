@@ -339,16 +339,22 @@ public final class Bendahara extends javax.swing.JFrame implements SQL{
     private void btn_obatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_obatActionPerformed
         // TODO add your handling code here:
         tableobat();
+        jTextField_Pegawai.setText("");
+        jTextField_stock.setText("");
     }//GEN-LAST:event_btn_obatActionPerformed
 
     private void btn_gajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gajiActionPerformed
         // TODO add your handling code here:
         pegawai();
+        jTextField_obat.setText("");
+        jTextField_stock.setText("");
     }//GEN-LAST:event_btn_gajiActionPerformed
 
     private void btn_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stockActionPerformed
         // TODO add your handling code here:
         stock();
+        jTextField_Pegawai.setText("");
+        jTextField_obat.setText("");
     }//GEN-LAST:event_btn_stockActionPerformed
 
     /**

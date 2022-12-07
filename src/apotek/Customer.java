@@ -36,6 +36,7 @@ public final class Customer extends javax.swing.JFrame implements SQL{
         connectsql();
         initComponents();
         tableDisplay();
+        addJcomboItem();
     }
     
     @Override
@@ -61,6 +62,7 @@ public final class Customer extends javax.swing.JFrame implements SQL{
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton_BACK = new javax.swing.JButton();
+        jButton_deleteAll = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -68,7 +70,6 @@ public final class Customer extends javax.swing.JFrame implements SQL{
         jButton_tambah = new javax.swing.JButton();
         text_harga = new javax.swing.JTextField();
         jButton_delete = new javax.swing.JButton();
-        jButton_deleteAll = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_customers = new javax.swing.JTable();
         jComboBox_Obat = new javax.swing.JComboBox<>();
@@ -93,18 +94,31 @@ public final class Customer extends javax.swing.JFrame implements SQL{
             }
         });
 
+        jButton_deleteAll.setBackground(new java.awt.Color(255, 0, 0));
+        jButton_deleteAll.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_deleteAll.setText("Delete All");
+        jButton_deleteAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_deleteAllActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton_BACK, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_deleteAll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_BACK, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,6 +126,8 @@ public final class Customer extends javax.swing.JFrame implements SQL{
                 .addGap(52, 52, 52)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_deleteAll)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_BACK)
                 .addGap(31, 31, 31))
         );
@@ -157,15 +173,6 @@ public final class Customer extends javax.swing.JFrame implements SQL{
             }
         });
 
-        jButton_deleteAll.setBackground(new java.awt.Color(255, 0, 0));
-        jButton_deleteAll.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_deleteAll.setText("Delete All");
-        jButton_deleteAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_deleteAllActionPerformed(evt);
-            }
-        });
-
         jTable_customers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -182,7 +189,6 @@ public final class Customer extends javax.swing.JFrame implements SQL{
 
         jComboBox_Obat.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Obat.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox_Obat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paracetamol", "OBH", "Intunal", "VitaminC", "Lasal" }));
         jComboBox_Obat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_ObatActionPerformed(evt);
@@ -239,7 +245,6 @@ public final class Customer extends javax.swing.JFrame implements SQL{
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton_deleteAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jButton_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                                             .addComponent(ID_text))
                                         .addGap(0, 41, Short.MAX_VALUE)))))
@@ -273,11 +278,10 @@ public final class Customer extends javax.swing.JFrame implements SQL{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(text_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_deleteAll))
+                    .addComponent(text_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton_tambah)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -353,6 +357,20 @@ public final class Customer extends javax.swing.JFrame implements SQL{
         } catch (SQLException ex) {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void addJcomboItem(){
+        try {
+            res = stm.executeQuery("select * from stockobat");
+            while (res.next()) {
+                jComboBox_Obat.addItem(
+                res.getString("Nama")
+                );
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
     private void text_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_namaActionPerformed

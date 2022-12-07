@@ -79,6 +79,7 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButton_BACK = new javax.swing.JButton();
+        jButton_deleteAll = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -86,17 +87,18 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
         jButton_tambah = new javax.swing.JButton();
         text_telp = new javax.swing.JTextField();
         jButton_delete = new javax.swing.JButton();
-        jButton_deleteAll = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Pegawai = new javax.swing.JTable();
         jComboBox_Jabatan = new javax.swing.JComboBox<>();
-        ID_text_2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         text_nama = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         text_Gaji = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jButton_update_nama = new javax.swing.JButton();
+        jButton_update_jabatan = new javax.swing.JButton();
+        jButton_update_notelp = new javax.swing.JButton();
+        jButton_update_Gaji = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +117,15 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
             }
         });
 
+        jButton_deleteAll.setBackground(new java.awt.Color(255, 0, 0));
+        jButton_deleteAll.setForeground(new java.awt.Color(255, 255, 255));
+        jButton_deleteAll.setText("Delete All");
+        jButton_deleteAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_deleteAllActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -127,7 +138,10 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
                         .addGap(0, 18, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton_BACK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jButton_BACK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton_deleteAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -136,6 +150,8 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
                 .addGap(31, 31, 31)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_deleteAll)
+                .addGap(18, 18, 18)
                 .addComponent(jButton_BACK)
                 .addGap(31, 31, 31))
         );
@@ -174,19 +190,10 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
 
         jButton_delete.setBackground(java.awt.Color.red);
         jButton_delete.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_delete.setText("Selected Delete");
+        jButton_delete.setText("Delete");
         jButton_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_deleteActionPerformed(evt);
-            }
-        });
-
-        jButton_deleteAll.setBackground(new java.awt.Color(255, 0, 0));
-        jButton_deleteAll.setForeground(new java.awt.Color(255, 255, 255));
-        jButton_deleteAll.setText("Delete All");
-        jButton_deleteAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_deleteAllActionPerformed(evt);
             }
         });
 
@@ -213,24 +220,9 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
             }
         });
 
-        ID_text_2.setBackground(new java.awt.Color(255, 255, 255));
-        ID_text_2.setForeground(new java.awt.Color(0, 0, 0));
-        ID_text_2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ID_text_2ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText(" ID  :");
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Data Pegawai");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Nama");
 
         text_nama.setBackground(new java.awt.Color(255, 255, 255));
         text_nama.setForeground(new java.awt.Color(0, 0, 0));
@@ -247,6 +239,46 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
         text_Gaji.setBackground(new java.awt.Color(255, 255, 255));
         text_Gaji.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Nama");
+
+        jButton_update_nama.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_update_nama.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_update_nama.setText("Update");
+        jButton_update_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_update_namaActionPerformed(evt);
+            }
+        });
+
+        jButton_update_jabatan.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_update_jabatan.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_update_jabatan.setText("Update");
+        jButton_update_jabatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_update_jabatanActionPerformed(evt);
+            }
+        });
+
+        jButton_update_notelp.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_update_notelp.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_update_notelp.setText("Update");
+        jButton_update_notelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_update_notelpActionPerformed(evt);
+            }
+        });
+
+        jButton_update_Gaji.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_update_Gaji.setForeground(new java.awt.Color(0, 0, 0));
+        jButton_update_Gaji.setText("Update");
+        jButton_update_Gaji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_update_GajiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -255,48 +287,50 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(198, 198, 198)
+                                        .addComponent(jButton_tambah))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jComboBox_Jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(text_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton_update_nama)
+                                            .addComponent(jButton_update_jabatan)))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(text_nama, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jComboBox_Jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(text_telp, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(text_Gaji, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(text_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                                        .addComponent(jLabel4)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jButton_deleteAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton_delete, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
-                                            .addComponent(ID_text_2))
-                                        .addGap(0, 33, Short.MAX_VALUE))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(287, 287, 287)
-                                .addComponent(jLabel7)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                                            .addComponent(text_telp, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                            .addComponent(text_Gaji))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton_update_notelp)
+                                            .addComponent(jButton_update_Gaji)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(text_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton_delete)))
+                                .addGap(0, 278, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(jButton_tambah)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(287, 287, 287)
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,36 +342,35 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ID_text_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(14, 14, 14))
+                        .addGap(41, 41, 41))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(text_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(text_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_delete))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_delete)
-                    .addComponent(jLabel6)
-                    .addComponent(text_nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(text_nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jButton_update_nama))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_deleteAll)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox_Jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_Jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_update_jabatan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(text_telp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(text_telp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_update_notelp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(text_Gaji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(text_Gaji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_update_Gaji))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_tambah)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -350,7 +383,9 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -369,84 +404,13 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_BACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BACKActionPerformed
-        Main m = new Main();
-        m.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton_BACKActionPerformed
-
-    private void text_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_IDActionPerformed
+    private void text_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_namaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_text_IDActionPerformed
-
-    private void jButton_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tambahActionPerformed
-        try {
-            // TODO add your handling code here:
-           
-            if(text_nama.getText().equals("")|| 
-                    text_ID.getText().equals("")||
-                    text_telp.getText().equals("")||
-                    text_Gaji.getText().equals("")){
-                JOptionPane.showMessageDialog(this, "Please Insert All Data");
-            }else{
-                
-                //get data
-                String ID = text_ID.getText();
-                String nama = text_nama.getText();
-                String jabatan = jComboBox_Jabatan.getSelectedItem().toString();
-                String NoTelp = text_telp.getText();
-                int gaji = Integer.parseInt(text_Gaji.getText());
-                
-                //insert data to sql   
-                PreparedStatement ps = con.prepareStatement("insert into karyawan(ID,Nama,Jabatan,NoTelp,Gaji)values(?,?,?,?,?)");
-                ps.setString(1,ID);
-                ps.setString(2, nama);
-                ps.setString(3, jabatan);          
-                ps.setString(4, NoTelp);
-                ps.setInt(5, gaji);
-                ps.executeUpdate();
-                
-                tableDisplay();
-                JOptionPane.showMessageDialog(this, "Data Added");
-                
-                //reset 
-                text_nama.setText("");
-                text_ID.setText("");
-                text_telp.setText("");
-                text_Gaji.setText("");
-                
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton_tambahActionPerformed
-
-    private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
-        try {
-            // TODO add your handling code here:
-            String ID = ID_text_2.getText();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Karyawan WHERE ID=(?)");
-            ps.setString(1, ID);
-            ps.executeUpdate();
-            tableDisplay();
-            JOptionPane.showMessageDialog(this, "Data Deleted");
-            ID_text_2.setText("");
-        } catch (SQLException ex) {
-            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton_deleteActionPerformed
+    }//GEN-LAST:event_text_namaActionPerformed
 
     private void jComboBox_JabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_JabatanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_JabatanActionPerformed
-
-    private void ID_text_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ID_text_2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ID_text_2ActionPerformed
-
-    private void text_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_namaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_text_namaActionPerformed
 
     private void jButton_deleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteAllActionPerformed
         // TODO add your handling code here:
@@ -459,6 +423,181 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_deleteAllActionPerformed
+
+    private void jButton_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_deleteActionPerformed
+        try {
+            // TODO add your handling code here:
+            String ID = text_ID.getText();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Karyawan WHERE ID=(?)");
+            ps.setString(1, ID);
+            ps.executeUpdate();
+            tableDisplay();
+            JOptionPane.showMessageDialog(this, "Data Deleted");
+            text_ID.setText("");
+        } catch (SQLException ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_deleteActionPerformed
+
+    private void jButton_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tambahActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            if(text_nama.getText().equals("")||
+                text_ID.getText().equals("")||
+                text_telp.getText().equals("")||
+                text_Gaji.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Please Insert All Data");
+            }else{
+
+                //get data
+                String ID = text_ID.getText();
+                String nama = text_nama.getText();
+                String jabatan = jComboBox_Jabatan.getSelectedItem().toString();
+                String NoTelp = text_telp.getText();
+                int gaji = Integer.parseInt(text_Gaji.getText());
+
+                //insert data to sql
+                PreparedStatement ps = con.prepareStatement("insert into karyawan(ID,Nama,Jabatan,NoTelp,Gaji)values(?,?,?,?,?)");
+                ps.setString(1,ID);
+                ps.setString(2, nama);
+                ps.setString(3, jabatan);
+                ps.setString(4, NoTelp);
+                ps.setInt(5, gaji);
+                ps.executeUpdate();
+
+                tableDisplay();
+                JOptionPane.showMessageDialog(this, "Data Added");
+
+                //reset
+                text_nama.setText("");
+                text_ID.setText("");
+                text_telp.setText("");
+                text_Gaji.setText("");
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_tambahActionPerformed
+
+    private void text_IDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_IDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_IDActionPerformed
+
+    private void jButton_BACKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BACKActionPerformed
+        Main m = new Main();
+        m.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton_BACKActionPerformed
+
+    private void jButton_update_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_namaActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            if(text_nama.getText().equals("")||
+                text_ID.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Please Insert ID and Nama Data");
+            }else{
+
+                //get data
+                String ID = text_ID.getText();
+                String nama = text_nama.getText();
+
+                //update data
+                apt.setKaryawan("Nama", ID, nama);
+
+                tableDisplay();
+                JOptionPane.showMessageDialog(this, "Data Updated");
+
+                //reset
+                text_nama.setText("");
+                text_ID.setText("");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_update_namaActionPerformed
+
+    private void jButton_update_jabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_jabatanActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            if(text_ID.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Please Insert ID");
+            }else{
+
+                //get data
+                String ID = text_ID.getText();
+                String jabatan = jComboBox_Jabatan.getSelectedItem().toString();
+
+                //update data
+                apt.setKaryawan("Jabatan", ID, jabatan);
+
+                tableDisplay();
+                JOptionPane.showMessageDialog(this, "Data Updated");
+
+                //reset
+                text_ID.setText("");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_update_jabatanActionPerformed
+
+    private void jButton_update_notelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_notelpActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            if(text_telp.getText().equals("")||
+                text_ID.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Please Insert ID and No Telp");
+            }else{
+                //get data
+                String ID = text_ID.getText();
+                String telp = text_telp.getText();
+
+                //update data
+                apt.setKaryawan("NoTelp", ID, telp);
+
+                tableDisplay();
+                JOptionPane.showMessageDialog(this, "Data Updated");
+
+                //reset
+                text_telp.setText("");
+                text_ID.setText("");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_update_notelpActionPerformed
+
+    private void jButton_update_GajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_update_GajiActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            if(text_Gaji.getText().equals("")||
+                text_ID.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Please Insert ID and Gaji Data");
+            }else{
+                //get data
+                String ID = text_ID.getText();
+                String Gaji = text_Gaji.getText();
+
+                //update data
+                apt.setKaryawan("Gaji", ID, Gaji);
+
+                tableDisplay();
+                JOptionPane.showMessageDialog(this, "Data Updated");
+
+                //reset
+                text_Gaji.setText("");
+                text_ID.setText("");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton_update_GajiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,20 +635,22 @@ public final class Pegawai extends javax.swing.JFrame implements SQL{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ID_text_2;
     private javax.swing.JButton jButton_BACK;
     private javax.swing.JButton jButton_delete;
     private javax.swing.JButton jButton_deleteAll;
     private javax.swing.JButton jButton_tambah;
+    private javax.swing.JButton jButton_update_Gaji;
+    private javax.swing.JButton jButton_update_jabatan;
+    private javax.swing.JButton jButton_update_nama;
+    private javax.swing.JButton jButton_update_notelp;
     private javax.swing.JComboBox<String> jComboBox_Jabatan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

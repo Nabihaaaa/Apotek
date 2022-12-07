@@ -97,8 +97,7 @@ public final class Apotek implements SQL{
         } catch (SQLException ex) {
             Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 0;
-        
+        return 0;    
     }
     
     public int getHarga(int ID){
@@ -131,6 +130,42 @@ public final class Apotek implements SQL{
         String harga = Integer.toString(Harga);
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE StockObat set Harga="+harga+" WHERE ID="+id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public int getNama(String ID){
+        try {
+            res = stm.executeQuery("SELECT * from stockobat where ID="+ID);
+            int s = 0;
+            while (res.next()){
+                s = res.getInt("Nama");
+            }
+            return s;
+        } catch (SQLException ex) {
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;    
+    }
+    
+    public void setNama(String ID, String Nama){
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE stockobat set Nama=(?) WHERE ID=(?)");
+            ps.setString(1,Nama);
+            ps.setString(2, ID);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setKaryawan(String Kolom, String ID, String data){
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE Karyawan set "+Kolom+"=(?) WHERE ID=(?)");
+            ps.setString(1,data);
+            ps.setString(2, ID);
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Apotek.class.getName()).log(Level.SEVERE, null, ex);

@@ -4,9 +4,13 @@
  */
 package apotek;
 
+import static apotek.Apotek.con;
 import static apotek.Apotek.res;
 import static apotek.Apotek.stm;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -92,6 +96,16 @@ public final class Stock extends javax.swing.JFrame implements SQL{
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField_Stock = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        text_harga = new javax.swing.JTextField();
+        btn_Harga = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        text_Nama = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        text_stock = new javax.swing.JTextField();
+        btn_nama = new javax.swing.JButton();
+        btn_stock = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,9 +153,8 @@ public final class Stock extends javax.swing.JFrame implements SQL{
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ID Obat");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Jumlah");
+        jLabel5.setText("Restock");
 
         text_ID.setBackground(new java.awt.Color(255, 255, 255));
         text_ID.setForeground(new java.awt.Color(0, 0, 0));
@@ -186,11 +199,83 @@ public final class Stock extends javax.swing.JFrame implements SQL{
         jLabel6.setText("Jumlah Stock");
 
         jTextField_Stock.setEditable(false);
-        jTextField_Stock.setBackground(new java.awt.Color(204, 204, 204));
+        jTextField_Stock.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_Stock.setForeground(new java.awt.Color(0, 0, 0));
         jTextField_Stock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_StockActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Harga");
+
+        text_harga.setBackground(new java.awt.Color(255, 255, 255));
+        text_harga.setForeground(new java.awt.Color(0, 0, 0));
+        text_harga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_hargaActionPerformed(evt);
+            }
+        });
+
+        btn_Harga.setBackground(new java.awt.Color(255, 255, 255));
+        btn_Harga.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Harga.setText("Update");
+        btn_Harga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_HargaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Nama");
+
+        text_Nama.setBackground(new java.awt.Color(255, 255, 255));
+        text_Nama.setForeground(new java.awt.Color(0, 0, 0));
+        text_Nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_NamaActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Stock");
+
+        text_stock.setBackground(new java.awt.Color(255, 255, 255));
+        text_stock.setForeground(new java.awt.Color(0, 0, 0));
+        text_stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                text_stockActionPerformed(evt);
+            }
+        });
+
+        btn_nama.setBackground(new java.awt.Color(255, 255, 255));
+        btn_nama.setForeground(new java.awt.Color(0, 0, 0));
+        btn_nama.setText("Update");
+        btn_nama.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_namaActionPerformed(evt);
+            }
+        });
+
+        btn_stock.setBackground(new java.awt.Color(255, 255, 255));
+        btn_stock.setForeground(new java.awt.Color(0, 0, 0));
+        btn_stock.setText("Update");
+        btn_stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_stockActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Tambah");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -204,31 +289,64 @@ public final class Stock extends javax.swing.JFrame implements SQL{
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(text_Jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(287, 287, 287)
+                                        .addComponent(jLabel7))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(text_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(text_stock, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(btn_stock)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(text_harga, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(text_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(text_Nama, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addGap(128, 128, 128)
+                                                        .addComponent(jLabel6)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                                        .addComponent(jTextField_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addGap(12, 12, 12)
+                                                        .addComponent(btn_Harga)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jButton_tambah)
+                                                        .addGap(33, 33, 33))
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addGap(12, 12, 12)
+                                                        .addComponent(btn_nama)
+                                                        .addGap(45, 45, 45)
+                                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(text_Jumlah)))))))
+                                .addGap(41, 41, 41))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(287, 287, 287)
-                                .addComponent(jLabel7))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(234, 234, 234)
-                                .addComponent(jButton_tambah)))
-                        .addGap(0, 39, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane2))))
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2)))
-                .addContainerGap())
+                        .addGap(207, 207, 207)
+                        .addComponent(jButton1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,21 +364,41 @@ public final class Stock extends javax.swing.JFrame implements SQL{
                         .addComponent(text_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField_Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(text_Jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton_tambah)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(text_Jumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_tambah)
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(text_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_stock)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(text_Nama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_nama))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(text_harga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_Harga)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +421,7 @@ public final class Stock extends javax.swing.JFrame implements SQL{
 
     private void jButton_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_tambahActionPerformed
         if(text_ID.getText().equals("")||text_Jumlah.getText().equals("")){
-            JOptionPane.showMessageDialog(this, "Please Insert All Data");
+            JOptionPane.showMessageDialog(this, "Please Insert ID and Restock Data");
         }else{
             //restock
             String ID = text_ID.getText();
@@ -293,7 +431,10 @@ public final class Stock extends javax.swing.JFrame implements SQL{
             apt.setStock(ID, Integer.toString(total));
             
             tableDisplay();
-            JOptionPane.showMessageDialog(this, "Data Added");
+            JOptionPane.showMessageDialog(this, "Data Updated");
+            
+            text_ID.setText("");
+            text_Jumlah.setText("");
         }
     }//GEN-LAST:event_jButton_tambahActionPerformed
 
@@ -310,6 +451,105 @@ public final class Stock extends javax.swing.JFrame implements SQL{
     private void jTextField_StockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_StockActionPerformed
         
     }//GEN-LAST:event_jTextField_StockActionPerformed
+
+    private void btn_HargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_HargaActionPerformed
+        // TODO add your handling code here:
+        if(text_ID.getText().equals("")||text_harga.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please Insert ID and Harga Data");
+        }else{
+        String ID = text_ID.getText();
+        String Harga = text_harga.getText();
+        apt.setHarga(ID, Harga);
+        JOptionPane.showMessageDialog(this, "Data Updated");
+        tableDisplay();
+        text_ID.setText("");
+        text_harga.setText("");
+        tableDisplay();
+        }
+    }//GEN-LAST:event_btn_HargaActionPerformed
+
+    private void text_hargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_hargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_hargaActionPerformed
+
+    private void text_NamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_NamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_NamaActionPerformed
+
+    private void text_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_text_stockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_text_stockActionPerformed
+
+    private void btn_namaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_namaActionPerformed
+        // TODO add your handling code here:
+        if(text_ID.getText().equals("")||text_Nama.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please Insert ID and Nama");
+        }else{
+        String ID = text_ID.getText();
+        String Nama = text_Nama.getText();
+        apt.setNama(ID, Nama);
+        JOptionPane.showMessageDialog(this, "Data Updated");
+        tableDisplay();
+        text_ID.setText("");
+        text_Nama.setText("");
+        tableDisplay();
+        }
+    }//GEN-LAST:event_btn_namaActionPerformed
+
+    private void btn_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_stockActionPerformed
+        // TODO add your handling code here:
+        if(text_ID.getText().equals("")||text_stock.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please Insert ID and Nama");
+        }else{
+        String ID = text_ID.getText();
+        String stock = text_stock.getText();
+        apt.setStock(ID, stock);
+        JOptionPane.showMessageDialog(this, "Data Updated");
+        tableDisplay();
+        text_ID.setText("");
+        text_stock.setText("");
+        tableDisplay();
+        }
+    }//GEN-LAST:event_btn_stockActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+
+            if(text_Nama.getText().equals("")||
+                text_harga.getText().equals("")||
+                text_stock.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Please Insert All Data");
+            }else{
+
+                //get data
+                String nama = text_Nama.getText();
+                int harga = Integer.parseInt(text_harga.getText());
+                int stock = Integer.parseInt(text_stock.getText());
+
+                //insert data to sql
+                PreparedStatement ps = con.prepareStatement("insert into stockobat(ID,Nama,Harga,Stock)values(?,?,?,?)");
+                ps.setInt(1,0);
+                ps.setString(2, nama);
+                ps.setInt(3, harga);
+                ps.setInt(4, stock);
+                ps.executeUpdate();
+
+                tableDisplay();
+                JOptionPane.showMessageDialog(this, "Data Added");
+
+                //reset
+                text_Nama.setText("");
+                text_ID.setText("");
+                text_harga.setText("");
+                text_stock.setText("");
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,13 +587,20 @@ public final class Stock extends javax.swing.JFrame implements SQL{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Harga;
+    private javax.swing.JButton btn_nama;
+    private javax.swing.JButton btn_stock;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_BACK;
     private javax.swing.JButton jButton_tambah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -362,6 +609,9 @@ public final class Stock extends javax.swing.JFrame implements SQL{
     private javax.swing.JTextField jTextField_Stock;
     private javax.swing.JTextField text_ID;
     private javax.swing.JTextField text_Jumlah;
+    private javax.swing.JTextField text_Nama;
+    private javax.swing.JTextField text_harga;
+    private javax.swing.JTextField text_stock;
     // End of variables declaration//GEN-END:variables
 
    

@@ -39,7 +39,6 @@ public final class Bendahara extends javax.swing.JFrame implements SQL{
         tb.addColumn("ID");
         tb.addColumn("Harga");
         jTable_bendahara.setModel(tb);
-            
     }
     
     private void tableobat(){
